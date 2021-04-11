@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:market/src/features/presentation/login_page/login_page.dart';
+import 'package:market/src/features/presentation/login_page/view/login_page.dart';
 import 'package:market/src/routes/routes.dart';
 
 void main() {
