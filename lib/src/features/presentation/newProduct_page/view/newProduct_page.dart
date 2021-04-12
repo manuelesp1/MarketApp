@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class NewProductPage extends StatelessWidget {
-  const NewProductPage({Key key}) : super(key: key);
+class NewProductPage extends StatefulWidget {
+  @override
+  _NewProductPageState createState() => _NewProductPageState();
+}
+
+class _NewProductPageState extends State<NewProductPage> {
+  var sampleImage;
+  List listItem = ['tipo 1', 'tipo 2', 'tipo 3'];
+  String valueChoose;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Nuevo producto'),
+        backgroundColor: Colors.orange,
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.check,
+          FlatButton(
+            child: Text(
+              'Guardar',
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
             onPressed: () {},
-          )
+          ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.save,
+          //   ),
+          //   onPressed: () {
+          //     // getImage,
+          //   },
+          // )
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.orange,
         child: Icon(
           Icons.add_a_photo,
         ),
@@ -34,33 +55,100 @@ class NewProductPage extends StatelessWidget {
                 width: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
+                    fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://lh3.googleusercontent.com/proxy/gtMuW83xZNQYPotEooDvjQQgQsjFKNRPsylIfslGiPZ7fa5tRBBltUB4MKyeopKTla3o-LBmwlcGEsAZSKyP'),
+                      'https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_960_720.png',
+                    ),
                   ),
                 ),
               ),
               Container(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Ingrese el código de producto',
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(238, 238, 238, 1),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Ingrese el código de producto',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
                   ),
                 ),
               ),
-              Container(
-                child: DropDownList(),
+              SizedBox(
+                height: 20,
               ),
               Container(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Ingrese el nombre del producto',
+                width: double.infinity,
+                // color: Color.fromRGBO(238, 238, 238, 1),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromRGBO(238, 238, 238, 1),
+                  // border: OutlineInputBorder(borderSide: BorderSide.none,),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(left: 30),
+                  child: DropdownButton(
+                    hint: Text(
+                      'Seleccione',
+                    ),
+                    value: valueChoose,
+                    onChanged: (newValue) {
+                      setState(() {
+                        valueChoose = newValue;
+                      });
+                    },
+                    items: listItem.map((valueItem) {
+                      return DropdownMenuItem(
+                        value: valueItem,
+                        child: Text(valueItem),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Ingrese el precio del producto',
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromRGBO(238, 238, 238, 1),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Ingrese el nombre del producto',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromRGBO(238, 238, 238, 1),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'Ingrese el precio del producto',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
                   ),
                 ),
               )
@@ -72,33 +160,10 @@ class NewProductPage extends StatelessWidget {
   }
 }
 
-class DropDownList extends StatefulWidget {
-  @override
-  _DropDownListState createState() => _DropDownListState();
-}
+// Future getImage() async {
+//   var tempImage = await ImagePicker().getImage(source: ImageSource.gallery);
 
-class _DropDownListState extends State<DropDownList> {
-  List listItem = ['tipo 1', 'tipo 2', 'tipo 3'];
-  String valueChoose;
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton(
-      hint: Text(
-        'Seleccione',
-      ),
-      value: valueChoose,
-      onChanged: (newValue) {
-        setState(() {
-          valueChoose = newValue;
-        });
-      },
-      items: listItem.map((valueItem) {
-        return DropdownMenuItem(
-          value: valueItem,
-          child: Text(valueItem),
-        );
-      }).toList(),
-    );
-  }
-}
+//   setState(() {
+//     sampleImage = tempImage;
+//   });
+// }

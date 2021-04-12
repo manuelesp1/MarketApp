@@ -6,83 +6,85 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.orange,
         body: SafeArea(
-      child: ListView(
-        children: [
-          Stack(
+          child: ListView(
             children: [
-              Container(
-                height: 700,
-                width: 400,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    // colorFilter: ColorFilter.mode(
-                    //     Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://fructusforum.com/wp-content/uploads/2021/02/comprar-verduras.jpg'),
+              Stack(
+                children: [
+                  Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        // colorFilter: ColorFilter.mode(
+                        //     Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            'https://fructusforum.com/wp-content/uploads/2021/02/comprar-verduras.jpg'),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Center(
-                child: Container(
-                  width: 300,
-                  margin: EdgeInsets.only(top: 200),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                        ),
+                  Center(
+                    child: Container(
+                      width: 300,
+                      margin: EdgeInsets.only(top: 200),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Contraseña',
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        child: RaisedButton(
-                          child: Text(
-                            'Iniciar sesión',
-                            style: TextStyle(
-                              color: Colors.white,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Email',
                             ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Contraseña',
+                            ),
                           ),
-                          color: Colors.orange,
-                          onPressed: () {
-                            Navigator.pushNamed(context, 'new_product');
-                          },
-                        ),
-                      ),
-                      FlatButton(
-                        child: Text(
-                          'Olvidé mi contraseña',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black26,
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        onPressed: () {},
+                          Container(
+                            child: RaisedButton(
+                              child: Text(
+                                'Iniciar sesión',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              color: Colors.orange,
+                              onPressed: () {
+                                Navigator.pushNamed(context, 'new_product');
+                              },
+                            ),
+                          ),
+                          FlatButton(
+                            child: Text(
+                              'Olvidé mi contraseña',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black26,
+                              ),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }
