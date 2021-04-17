@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class NewProductPage extends StatefulWidget {
+class AddTab extends StatefulWidget {
   @override
-  _NewProductPageState createState() => _NewProductPageState();
+  _AddTabState createState() => _AddTabState();
 }
 
-class _NewProductPageState extends State<NewProductPage> {
+class _AddTabState extends State<AddTab> {
   PickedFile sampleImage;
   List listItem = ['tipo 1', 'tipo 2', 'tipo 3'];
   String valueChoose;
@@ -79,7 +79,9 @@ class _NewProductPageState extends State<NewProductPage> {
                   Container(
                     width: double.infinity,
                     // color: Color.fromRGBO(238, 238, 238, 1),
+
                     decoration: BoxDecoration(
+                      
                       borderRadius: BorderRadius.circular(20),
                       color: Color.fromRGBO(250, 228, 169, 1),
                       // border: OutlineInputBorder(borderSide: BorderSide.none,),

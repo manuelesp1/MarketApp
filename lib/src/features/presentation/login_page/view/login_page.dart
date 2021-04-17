@@ -6,29 +6,42 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.orange,
-        body: SafeArea(
+      backgroundColor: Colors.orange,
+      body: SafeArea(
+        child: Container(
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //     begin: Alignment.topRight,
+          //     end: Alignment.bottomLeft,
+          //     colors: [
+          //       Colors.orange,
+          //       Color.fromARGB(255, 252, 74, 26),
+          //     ],
+          //   ),
+          // ),
           child: ListView(
             children: [
               Stack(
                 children: [
                   Container(
-                    height: double.infinity,
+                    margin: EdgeInsets.only(top: 100),
                     width: double.infinity,
+                    height: 200,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        // colorFilter: ColorFilter.mode(
-                        //     Colors.black.withOpacity(0.4), BlendMode.dstATop),
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            'https://fructusforum.com/wp-content/uploads/2021/02/comprar-verduras.jpg'),
+                        // image: NetworkImage(
+                        //   'https://s3.amazonaws.com/ry3/51_i_190107228196.5c6603b0.3718750d.full.jpeg',
+                        // ),
+                        image:
+                            AssetImage('lib/src/assets/img/logo_vegetales.png'),
                       ),
                     ),
                   ),
                   Center(
                     child: Container(
                       width: 300,
-                      margin: EdgeInsets.only(top: 200),
+                      margin: EdgeInsets.only(top: 300),
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       decoration: BoxDecoration(
@@ -63,7 +76,7 @@ class LoginPage extends StatelessWidget {
                               ),
                               color: Colors.orange,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'new_product');
+                                Navigator.pushNamed(context, 'tab');
                               },
                             ),
                           ),
@@ -75,7 +88,9 @@ class LoginPage extends StatelessWidget {
                                 color: Colors.black26,
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'tab');
+                            },
                           ),
                         ],
                       ),
@@ -85,6 +100,8 @@ class LoginPage extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
