@@ -89,7 +89,7 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, 'tab');
+                              Navigator.pushNamed(context, 'products');
                             },
                           ),
                         ],

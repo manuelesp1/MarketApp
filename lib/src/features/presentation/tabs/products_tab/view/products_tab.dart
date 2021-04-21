@@ -101,5 +101,7 @@ class _ProductsTabState extends State<ProductsTab> {
     );
   }
 
-  Widget typeContent(BuildContext context) {}
+  Widget typeContent(BuildContext context) {
+    return Container();
+  }
 }

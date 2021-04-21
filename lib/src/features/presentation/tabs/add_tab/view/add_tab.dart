@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -11,6 +12,11 @@ class _AddTabState extends State<AddTab> {
   PickedFile sampleImage;
   List listItem = ['tipo 1', 'tipo 2', 'tipo 3'];
   String valueChoose;
+  TextEditingController codigoTextController;
+  TextEditingController tipoTextController;
+  TextEditingController nombreTextController;
+  TextEditingController precioTextController;
+  TextEditingController descripcionTextController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,14 @@ class _AddTabState extends State<AddTab> {
                 color: Colors.white,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              enviar();
+              codigoTextController.clear();
+              // tipoTextController.clear();
+              nombreTextController.clear();
+              precioTextController.clear();
+              descripcionTextController.clear();
+            },
           ),
         ],
       ),
@@ -64,6 +77,7 @@ class _AddTabState extends State<AddTab> {
                     child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: TextFormField(
+                        controller: codigoTextController,
                         decoration: InputDecoration(
                           hintText: 'Ingrese el código de producto',
                           border: OutlineInputBorder(
@@ -76,37 +90,36 @@ class _AddTabState extends State<AddTab> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    width: double.infinity,
-                    // color: Color.fromRGBO(238, 238, 238, 1),
+                  // Container(
+                  //   width: double.infinity,
+                  //   // color: Color.fromRGBO(238, 238, 238, 1),
 
-                    decoration: BoxDecoration(
-                      
-                      borderRadius: BorderRadius.circular(20),
-                      color: Color.fromRGBO(250, 228, 169, 1),
-                      // border: OutlineInputBorder(borderSide: BorderSide.none,),
-                    ),
-                    child: Container(
-                      margin: EdgeInsets.only(left: 30),
-                      child: DropdownButton(
-                        hint: Text(
-                          'Seleccione el tipo de producto',
-                        ),
-                        value: valueChoose,
-                        onChanged: (newValue) {
-                          setState(() {
-                            valueChoose = newValue;
-                          });
-                        },
-                        items: listItem.map((valueItem) {
-                          return DropdownMenuItem(
-                            value: valueItem,
-                            child: Text(valueItem),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(20),
+                  //     color: Color.fromRGBO(250, 228, 169, 1),
+                  //     // border: OutlineInputBorder(borderSide: BorderSide.none,),
+                  //   ),
+                  //   child: Container(
+                  //     margin: EdgeInsets.only(left: 30),
+                  //     child: DropdownButton(
+                  //       hint: Text(
+                  //         'Seleccione el tipo de producto',
+                  //       ),
+                  //       value: valueChoose,
+                  //       onChanged: (newValue) {
+                  //         setState(() {
+                  //           valueChoose = newValue;
+                  //         });
+                  //       },
+                  //       items: listItem.map((valueItem) {
+                  //         return DropdownMenuItem(
+                  //           value: valueItem,
+                  //           child: Text(valueItem),
+                  //         );
+                  //       }).toList(),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 20,
                   ),
@@ -118,6 +131,7 @@ class _AddTabState extends State<AddTab> {
                     child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: TextFormField(
+                        controller: nombreTextController,
                         decoration: InputDecoration(
                           hintText: 'Ingrese el nombre del producto',
                           border: OutlineInputBorder(
@@ -138,6 +152,7 @@ class _AddTabState extends State<AddTab> {
                     child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: TextFormField(
+                        controller: precioTextController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           hintText: 'Ingrese el precio del producto',
@@ -159,6 +174,7 @@ class _AddTabState extends State<AddTab> {
                     child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: TextFormField(
+                        controller: descripcionTextController,
                         maxLines: 4,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -180,6 +196,37 @@ class _AddTabState extends State<AddTab> {
         ),
       ),
     );
+  }
+
+  void enviar() {
+    FirebaseFirestore.instance.collection("market").add(
+      {
+        'codigo': codigoTextController.text,
+        // 'tipo': valueChoose,
+        'nombre': nombreTextController.text,
+        'precio': precioTextController.text,
+        'descripcion': descripcionTextController.text,
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    codigoTextController = TextEditingController();
+    nombreTextController = TextEditingController();
+    precioTextController = TextEditingController();
+    descripcionTextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    codigoTextController.dispose();
+    nombreTextController.dispose();
+    precioTextController.dispose();
+    descripcionTextController.dispose();
   }
 
   Widget _setImageView() {
